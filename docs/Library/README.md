@@ -1,4 +1,5 @@
-#VuePress搭建个人博客
+# VuePress搭建个人博客
+
 ## 上手搭建
 直接拿[VuePress仓库](https://github.com/vuejs/vuepress)中的**docs**目录。
 1. 首先安装VuePress到全局
