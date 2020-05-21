@@ -3,6 +3,3 @@ node_modules/
 
 docs/.vuepress/theme/
 docs/.vuepress/dist/
-
-package-lock.json
-yarn.lock
