@@ -1,18 +1,6 @@
-# Hexo已经看腻了，来试试VuePress搭建个人博客
-
-![](https://user-gold-cdn.xitu.io/2018/4/23/162f21a0e09d9fd3?w=600&h=600&f=png&s=160672)
-
-## VuePress
-先简单介绍一下VuePress，这是尤大在2018年4月份发布的一个新轮子。
-
-![](https://user-gold-cdn.xitu.io/2018/4/23/162f21add3603e86?w=751&h=418&f=png&s=63447)
-
-一个基于 Vue SSR 的静态站生成器，本来的目的是爽爽的写文档，但是我发现用来撸一个人博客也非常不错。
-
-**[这是VuePress的官方文档](https://vuepress.vuejs.org/)**
-**[这是VuePress的中文文档](https://vuepress.docschina.org/)**
+#VuePress搭建个人博客
 ## 上手搭建
-你可以跟着文档上的例子自己玩一玩，不过由于VuePress的文档也是用VuePress来实现的，所以我取巧直接拿[VuePress仓库](https://github.com/vuejs/vuepress)中的**docs**目录拿来玩耍。
+直接拿[VuePress仓库](https://github.com/vuejs/vuepress)中的**docs**目录。
 1. 首先安装VuePress到全局
 ```bash
 npm install -g vuepress
@@ -21,7 +9,7 @@ npm install -g vuepress
 ```bash
 git clone git@github.com:docschina/vuepress.git
 ```
-3. 在docs文件中执行（请确保你的 Node.js 版本 >= 8）
+3. 在docs文件中执行
 ```bash
 cd vuepress
 cd docs
@@ -32,7 +20,7 @@ vuepress dev
  VuePress dev server listening at http://localhost:8080/
 ```
 下面我们打开[http://localhost:8080/](http://localhost:8080/)
-发现真的打开了vuepress文档：
+发现打开了vuepress文档：
 ![](https://user-gold-cdn.xitu.io/2018/4/23/162f21a0e0944215?w=1240&h=520&f=png&s=69295)
 
 下面的工作就是数据的替换了，但我们应该先看一下docs的目录结构：
@@ -105,8 +93,6 @@ $borderColor = #eaecef // 边框颜色
 $codeBgColor = #282c34 // 代码背景颜色
 ```
 
-我把它改成了这样：
-![](https://user-gold-cdn.xitu.io/2018/4/23/162f21a0e07ec947?w=1240&h=698&f=png&s=138334)
 ## 侧边栏的实现
 由于评论区里问的人较多，所以在这里更新一下，其实我就算在这里写的再详细也不如大家去看官方文档。
 侧边栏的配置也在`.vuepress/config.js`中：
@@ -142,15 +128,35 @@ sidebar: [
 │  ├─HTTP
 │  └─JavaScript
 ```
-我的博客：[brownhu](http://brownhu.site/)
 
 ## 部署
 在配置好你博客之后，命令行执行：
 ```bash
 Vuepress build
 ```
-当你看到这一行就说明成功了：
+当你看到这一行说明成功：
 ```
 Success! Generated static files in vuepress.
 ```
-将打包好的vuepress目录上传到你的github仓库，和github page配合，就可以配置好你的博客网站了。
+
+注意:
+
+1.仓库名字要和config.js 里 的 base 属性值一样
+
+2.在项目根目录新建文件.gitignore,让git 忽略 node_module下的所有文件和打包以后dist下的所有文件
+
+3.新切一个gh-pages,用来存打包后的文件
+
+4.先删除 除了.git文件夹 ， node_module文件夹 ， docs文件夹， .gitignore之外的文件
+
+5.再把docs/.vuepress/dist文件夹下的所有文件剪切到根目录
+
+6.再删除docs文件夹
+
+7.git add -A
+
+8.git commit -m 'deploy'
+
+9.git push
+
+10.点击settings ,然后往下拉，找到 GitHub Pages
